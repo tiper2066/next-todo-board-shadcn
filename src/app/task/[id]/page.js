@@ -118,56 +118,56 @@ const TaskPage = () => {
 
     return (
         //  최상단 relative 포지션 스타일 추가
-        <div className="flex flex-col justify-start items-center relative min-w-[920px] max-w-[1200px] h-screen bg-[#f9f9f9] border-r-[1px] border-r-[#e6e6e6]">
+        <div className='flex flex-col justify-start items-center relative min-w-[920px] max-w-[1200px] h-screen bg-[#f9f9f9] border-r-[1px] border-r-[#e6e6e6]'>
             {/*  뒤로가기 및 저장 / 삭제 버튼 추가 */}
-            <div className="absolute top-6 left-7 flex item-center justify-between gap-2 w-full pr-[60px]">
+            <div className='absolute top-6 left-7 flex item-center justify-between gap-2 w-full pr-[60px]'>
                 <Button
-                    variant="outline"
-                    size="icon"
+                    variant='outline'
+                    size='icon'
                     onClick={() => router.back()} // 버튼 클릭시 이전 페이지로 이동
                 >
                     <ChevronLeft />
                 </Button>
-                <div className="flex items-center gap-2">
+                <div className='flex items-center gap-2'>
                     <Button
-                        variant="outline"
+                        variant='outline'
                         onClick={handleSave}
-                        className="bg-green-50 hover:bg-green-100"
+                        className='bg-green-50 hover:bg-green-100'
                     >
                         저장
                     </Button>
                     {/*  커스텀 알러트 팝업 컴포넌트 추가하고 트리거를 위한 버튼 포함  */}
                     <DeleteTaskPopup>
                         <Button
-                            variant="outline"
-                            className="text-rose-500 bg-red-50 hover:text-rose-600 hover:bg-rose-50"
+                            variant='outline'
+                            className='text-rose-500 bg-red-50 hover:text-rose-600 hover:bg-rose-50'
                         >
                             삭제
                         </Button>
                     </DeleteTaskPopup>
                 </div>
             </div>
-            <header className="flex flex-col justify-end items-start w-full bg-white">
-                <div className="flex flex-col w-full py-5 px-7 mt-17">
+            <header className='flex flex-col justify-end items-start w-full bg-white'>
+                <div className='flex flex-col w-full py-5 px-7 mt-17'>
                     <input
-                        type="text"
-                        placeholder="Enter Title Here"
-                        className="text-[36px] font-[700] outline-none [&::placeholder]:text-[#c4c4c4]"
+                        type='text'
+                        placeholder='Enter Title Here'
+                        className='text-[36px] font-[700] outline-none [&::placeholder]:text-[#c4c4c4]'
                         value={title} //  페이지 타이틀
                         //  타이틀 변경 반영
                         onChange={(e) => {
                             setTitle(e.target.value);
                         }}
                     />
-                    <div className="flex justify-start items-center gap-4 mt-2 mb-4">
+                    <div className='flex justify-start items-center gap-4 mt-2 mb-4'>
                         {/*  완료 보드 갯수 / 전체 보드 갯수 */}
-                        <span className="text-[#6d6d6d]">
+                        <span className='text-[#6d6d6d]'>
                             전체 보드{' '}
-                            <strong className="text-rose-400 pr-1">
+                            <strong className='text-rose-400 pr-1'>
                                 {boards.length}
                             </strong>
                             개 중,
-                            <strong className="text-green-500 pl-2 pr-1">
+                            <strong className='text-green-500 pl-2 pr-1'>
                                 {count}
                             </strong>
                             개 완료
@@ -180,30 +180,34 @@ const TaskPage = () => {
                                     : 0
                             }
                             //  [&>div]:bg-green-400 : 자식요소인 indicator 색상 지정
-                            className="w-[30%] h-2 [&>div]:bg-green-400"
+                            className='w-[30%] h-2 [&>div]:bg-green-400'
                         />
                         {/* Math.round(): 반올림 , toFixed(2): 소숫점 2자리 표시 */}
-                        <span>{`${Math.round(
-                            (count / boards.length) * 100
-                        ).toFixed(2)}%`}</span>
+                        <span>
+                            {boards && boards.length > 0
+                                ? `${Math.round(
+                                      (count / boards.length) * 100
+                                  ).toFixed(2)}%`
+                                : '보드 없음'}
+                        </span>
                     </div>
-                    <div className="flex items-center justify-between">
-                        <div className="flex items-center gap-[20px]">
+                    <div className='flex items-center justify-between'>
+                        <div className='flex items-center gap-[20px]'>
                             {/*  캘린더 UI, onChange 속성 전달  */}
                             <LabelCalendar
-                                label="From"
+                                label='From'
                                 value={startDate}
                                 onChange={setStartDate}
                             />
                             <LabelCalendar
-                                label="To"
+                                label='To'
                                 value={endDate}
                                 onChange={setEndDate}
                             />
                         </div>
                         <Button
-                            variant="outline"
-                            className="w-[15%] border-orange-500 bg-orange-400 text-white hover:bg-orange-400 hover:text-white"
+                            variant='outline'
+                            className='w-[15%] border-orange-500 bg-orange-400 text-white hover:bg-orange-400 hover:text-white'
                             onClick={handleAddBoard}
                         >
                             Add New Board
@@ -221,7 +225,7 @@ const TaskPage = () => {
                 {
                     // boards 배열이 있으면...
                     boards.length !== 0 ? (
-                        <div className="flex flex-col items-center gap-4">
+                        <div className='flex flex-col items-center gap-4'>
                             {boards.map((board) => (
                                 <BasicBoard
                                     key={board.id}
@@ -231,17 +235,17 @@ const TaskPage = () => {
                             ))}
                         </div>
                     ) : (
-                        <div className="flex flex-col items-center">
-                            <h3 className="scroll-m-20 text-2xl font-semibold tracking-tight">
+                        <div className='flex flex-col items-center'>
+                            <h3 className='scroll-m-20 text-2xl font-semibold tracking-tight'>
                                 There is no board yet
                             </h3>
-                            <small className="text-sm font-medium leading-none text-[#a6a6a6] mt-3 mb-7">
+                            <small className='text-sm font-medium leading-none text-[#a6a6a6] mt-3 mb-7'>
                                 Click the button and start flashing!
                             </small>
                             <button onClick={handleAddBoard}>
                                 <Image
-                                    src="/img/button.svg"
-                                    alt="round-button"
+                                    src='/img/button.svg'
+                                    alt='round-button'
                                     width={74}
                                     height={74}
                                 />
