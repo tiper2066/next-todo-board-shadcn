@@ -11,7 +11,8 @@ const useGetTasks = () => {
         try {
             const { data, status, error } = await supabase
                 .from('todos')
-                .select('*'); // 모든 데이터 가져오기
+                .select('*') // 모든 데이터 가져오기
+                .order('start_date', { ascending: false }); // 시작일 기준 내림차순 정렬, descending 은 없음
 
             if (status === 200) setTasks(data); // 성공하면 tasks 데이터 업데이트
             if (error) {
