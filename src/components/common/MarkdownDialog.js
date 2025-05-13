@@ -116,12 +116,12 @@ const MAarkdownDialog = ({ data, children }) => {
             <DialogTrigger asChild>{children}</DialogTrigger>
 
             {/* max-w-fit: max-width 가 fit-content 로 설정됨  */}
-            <DialogContent className="sm:max-w-fit min-w-xl">
+            <DialogContent className='sm:max-w-fit min-w-xl'>
                 <DialogHeader>
                     <DialogTitle>
-                        <div className="flex items-center justify-start gap-2 w-[45vw]">
+                        <div className='flex items-center justify-start gap-2 w-[45vw]'>
                             <Checkbox
-                                className="w-5 min-w-5 h-5"
+                                className='w-5 min-w-5 h-5'
                                 checked={isCompleted} //  isCompleted 데이터 바인딩
                                 //  checked 타입이 불값일 경우만 isCompleted 업데이트
                                 onCheckedChange={(checked) => {
@@ -131,9 +131,9 @@ const MAarkdownDialog = ({ data, children }) => {
                                 }}
                             />
                             <input
-                                type="text"
-                                placeholder="게시물의 제목을 입력하세요."
-                                className="w-full outline-0 border-0 text-xl font-medium text-[#303030] [&::placeholder]:text-[#bdbdbd] [&::placeholder]:font-medium"
+                                type='text'
+                                placeholder='게시물의 제목을 입력하세요.'
+                                className='w-full outline-0 border-0 text-xl font-medium text-[#303030] [&::placeholder]:text-[#bdbdbd] [&::placeholder]:font-medium'
                                 value={title} //  title 데이터 바인딩
                                 onChange={(e) => setTitle(e.target.value)} //  다이얼로그 타이틀 값 변경 함수
                             />
@@ -146,15 +146,15 @@ const MAarkdownDialog = ({ data, children }) => {
                     </DialogDescription>
                     {/* </VisuallyHidden> */}
                 </DialogHeader>
-                <div className="flex items-center gap-5">
+                <div className='flex items-center gap-5'>
                     {/*  날자 설정 UI 에 해당 데이터 바인딩  */}
                     <LabelCalendar
-                        label="From"
+                        label='From'
                         value={startDate}
                         onChange={setStartDate}
                     />
                     <LabelCalendar
-                        label="To"
+                        label='To'
                         value={endDate}
                         onChange={setEndDate}
                     />
@@ -162,18 +162,18 @@ const MAarkdownDialog = ({ data, children }) => {
                 <Separator />
                 {/*  MDEditor 삽입  */}
                 <MDEditor
-                    height="100%"
+                    height='100%'
                     value={contents} //  contents 데이터 바인딩
                     onChange={setContents}
-                    className="min-h-[320px]"
+                    className='min-h-[320px]'
                 />
                 <DialogFooter>
                     <DialogClose asChild>
-                        <Button variant="outline">취소</Button>
+                        <Button variant='outline'>취소</Button>
                     </DialogClose>
                     <Button
-                        type="submit"
-                        className="font-normal border-orange-500 bg-orange-400 text-white hover:bg-orange-400 hover:text-white"
+                        type='submit'
+                        className='font-normal border-orange-500 bg-orange-400 text-white hover:bg-orange-400 hover:text-white'
                         onClick={() => handleSubmit(data.id)}
                     >
                         등록

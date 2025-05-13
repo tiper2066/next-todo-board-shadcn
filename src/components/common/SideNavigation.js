@@ -1,6 +1,8 @@
 'use client'; //  client 컴포넌트 변환
 
 import { useCreateTask, useGetTasks } from '@/hooks/apis'; //   커스텀훅에서 useGetTasks
+import { cn } from '@/lib/utils';
+import Link from 'next/link';
 
 import { Button } from '../ui/button';
 import CustomSearchBar from './CustomSearchBar'; //  CustomSearchBar 컴포넌트 가져오기
@@ -36,6 +38,14 @@ const SideNavagation = () => {
     return (
         //  aside 태그로 감싸는 UI
         <aside className='flex flex-col justify-start w-[282px] h-screen py-5 px-6 gap-3 bg-white border-x-[1px] border-[#f4f4f5]'>
+            {/* --------- 사이트 이름 --------- */}
+            <div>
+                <Link href='/'>
+                    <h2 className='text-[19px] font-bold text-slate-500 text-center'>
+                        Tiper&apos;s TODO-BOARD
+                    </h2>
+                </Link>
+            </div>
             <div className='flex flex-col h-full gap-3'>
                 {/* ---------  검색창 UI - CustomSearchBar 컴포넌트, 이벤트 핸들러 추가  */}
                 <CustomSearchBar
@@ -73,25 +83,28 @@ const SideNavagation = () => {
                                         onClick={() =>
                                             router.push(`/task/${task.id}`)
                                         }
-                                        className={`${
+                                        className={cn(
                                             task.id === Number(id) &&
-                                            'bg-[#f5f5f5]'
-                                        } min-h-9 flex items-center gap-2 py-2 px-[10px] rounded-sm text-sm cursor-pointer`}
+                                                'bg-[#f5f5f5]',
+                                            'min-h-9 flex items-center gap-2 py-2 px-[10px] rounded-sm text-sm cursor-pointer'
+                                        )}
                                     >
                                         {/* 원형 돗 : task.id와 id의 값이 일치/불일치 시 배경 변경 */}
                                         <div
-                                            className={`${
+                                            className={cn(
                                                 task.id === Number(id)
                                                     ? 'bg-[#00f38d]'
-                                                    : 'bg-natural-400'
-                                            } h-[6px] w-[6px] rounded-full'`}
+                                                    : 'bg-natural-400',
+                                                'h-[6px] w-[6px] rounded-full'
+                                            )}
                                         ></div>
                                         {/* 메뉴 제목 : 현재 페이지 메뉴면 배경 변경, 제목이 없을 경우 처리  */}
                                         <span
-                                            className={`${
+                                            className={cn(
                                                 task.id !== Number(id) &&
-                                                'text-neutral-400 truncate'
-                                            }`}
+                                                    'text-neutral-400',
+                                                'w-[198px] truncate'
+                                            )}
                                         >
                                             {task.title
                                                 ? task.title
